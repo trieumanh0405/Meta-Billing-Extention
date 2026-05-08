@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Meta Billing Scraper",
+  "version": "1.0.0",
+  "description": "Scrape Meta Ads invoices → Google Drive + Sheets. Built by 1990 Agency.",
+  "permissions": [
+    "identity",
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://business.facebook.com/*",
+    "https://graph.facebook.com/*",
+    "https://www.googleapis.com/*",
+    "https://sheets.googleapis.com/*"
+  ],
+  "oauth2": {
+    "client_id": "222191123650-bh7ojo9leo3ba2peojghhph167h9b22r.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive",
+      "https://www.googleapis.com/auth/spreadsheets"
+    ]
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

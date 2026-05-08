@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Billing Scraper — Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="icons/icon-48.png" alt="logo" class="logo">
+      <div>
+        <h1>Meta Billing Scraper</h1>
+        <p class="subtitle">Settings — configure per your Google & Meta accounts</p>
+      </div>
+    </header>
+
+    <form id="settingsForm">
+      <!-- Google Section -->
+      <section>
+        <h2>🔗 Google Integration</h2>
+        <p class="section-desc">Connect to your Google Sheet and Drive folder for data storage.</p>
+
+        <div class="form-group">
+          <label for="sheetId">Google Sheet ID <span class="required">*</span></label>
+          <input type="text" id="sheetId" placeholder="e.g. 18zQH7a6ZBweQY8pO6wk3i1pqlAPDn4VvrlVQnlNHYFw" required>
+          <div class="help">
+            Find it in the Sheet URL: <code>docs.google.com/spreadsheets/d/<strong>{THIS_PART}</strong>/edit</code>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="driveFolderId">Google Drive Folder ID <span class="required">*</span></label>
+          <input type="text" id="driveFolderId" placeholder="e.g. 1NUBg5MBbqhEq9ahCd8bppaSCRk9_yA8M">
+          <div class="help">
+            Find it in the Drive folder URL: <code>drive.google.com/drive/folders/<strong>{THIS_PART}</strong></code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Meta Section -->
+      <section>
+        <h2>📘 Meta Integration</h2>
+        <p class="section-desc">Optional — used to auto-detect ad accounts with spend.</p>
+
+        <div class="form-group">
+          <label for="businessId">Business Manager ID <span class="required">*</span></label>
+          <input type="text" id="businessId" placeholder="e.g. 2077560705843516" required>
+          <div class="help">
+            Find it in any Meta Business URL: <code>business.facebook.com/latest/...?<strong>business_id=THIS_PART</strong></code>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="metaToken">Meta Graph API Token</label>
+          <input type="password" id="metaToken" placeholder="EAAdo8hp...">
+          <div class="help">
+            Leave blank to manually enter account IDs. Only needed for auto-detect feature.
+          </div>
+        </div>
+      </section>
+
+      <!-- Preferences -->
+      <section>
+        <h2>⚙️ Preferences</h2>
+
+        <div class="form-group">
+          <label for="defaultDateFrom">Default Start Date</label>
+          <input type="date" id="defaultDateFrom" value="2026-01-01">
+        </div>
+
+        <div class="form-group">
+          <label for="delayBetweenAccounts">Delay Between Accounts (ms)</label>
+          <input type="number" id="delayBetweenAccounts" value="20000" min="20000" max="120000" step="1000">
+          <div class="help">Higher = safer, slower. Recommended: 5000-10000ms.</div>
+        </div>
+      </section>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button type="submit" class="btn btn-primary">💾 Save Settings</button>
+        <span id="saveStatus" class="save-status"></span>
+      </div>
+    </form>
+
+    <!-- Sheet Template Setup -->
+    <section class="info-box">
+      <h3>📋 Sheet Setup</h3>
+      <p>Your Google Sheet must have a tab named <code>Master</code> with these headers in row 1:</p>
+      <table class="schema-table">
+        <tr>
+          <th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th>
+        </tr>
+        <tr>
+          <td>Date</td><td>Ad Account Name</td><td>Transaction ID</td><td>Link</td>
+          <td>Amount (có VAT)</td><td>Payment Method</td><td>Payment Status</td><td>VAT invoice ID</td>
+        </tr>
+      </table>
+    </section>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

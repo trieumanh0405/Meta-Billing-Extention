@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Billing Scraper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="icons/icon-48.png" alt="logo" class="logo">
+      <h1>Meta Billing Scraper</h1>
+    </header>
+
+    <!-- Setup Warning -->
+    <div id="setupWarning" class="alert alert-warning" style="display:none">
+      ⚠️ Configure Sheet ID & Drive Folder in
+      <a href="#" id="openOptions">Options</a>
+    </div>
+
+    <!-- Mode Selector -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="single">📄 Current Page</button>
+      <button class="mode-tab" data-mode="multi">🔄 Multi Account</button>
+    </div>
+
+    <!-- Single Page Mode -->
+    <div id="singleMode" class="mode-content">
+      <p class="hint">Open a Meta Billing page, then click scrape.</p>
+      <button id="scrapeCurrent" class="btn btn-primary">▶ Scrape This Page</button>
+    </div>
+
+    <!-- Multi Account Mode -->
+    <div id="multiMode" class="mode-content" style="display:none">
+      <div class="form-group">
+        <label>Date Range</label>
+        <div class="date-range">
+          <input type="date" id="dateFrom" value="2026-01-01">
+          <span>→</span>
+          <input type="date" id="dateTo">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ad Accounts</label>
+        <textarea id="accountIds" placeholder="Paste account IDs (one per line) or leave blank to auto-detect from Meta token" rows="3"></textarea>
+        <div class="checkbox-row">
+          <input type="checkbox" id="autoDetect" checked>
+          <label for="autoDetect">Auto-detect all accessible accounts</label>
+        </div>
+      </div>
+
+      <button id="startMulti" class="btn btn-primary">▶ Start Scraping</button>
+      <div class="control-row" id="scrapeControls" style="display:none">
+        <button id="pauseScrape" class="btn btn-secondary">⏸ Pause</button>
+        <button id="resumeScrape" class="btn btn-secondary" style="display:none">▶ Resume</button>
+        <button id="stopScrape" class="btn btn-danger">⛔ Stop</button>
+      </div>
+      <button id="refreshSession" class="btn btn-secondary">↻ Refresh Session</button>
+    </div>
+
+    <!-- Progress -->
+    <div id="progressSection" style="display:none">
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill" style="width:0%"></div>
+      </div>
+      <p id="progressText" class="progress-text">Ready</p>
+    </div>
+
+    <!-- Log -->
+    <div id="logSection" style="display:none">
+      <div class="log-header">
+        <span>Activity Log</span>
+        <button id="clearLog" class="btn-small">Clear</button>
+      </div>
+      <pre id="logOutput" class="log-output"></pre>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
